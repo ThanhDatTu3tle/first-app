@@ -1,0 +1,18 @@
+<div class="wrapper flex flex-row justify-content-between bg-white shadow-2 w-full h-4rem px-5 py-2">
+  <!-- Logo & Hamburger -->
+  <div class=" flex flex-row w-2 h-auto" routerLink="/">
+    <img src="../../../assets/images/LogoITAcacy.png" alt="Logo" class="h-full" />
+  </div>
+
+  <!-- User info -->
+  <div class="flex flex-row align-items-center justify-content-between w-3 h-auto px-3">
+    <p>Đạt - ROOT</p>
+    <i class="pi pi-bell text-2xl cursor-pointer" title="Thông báo" style="font-size: 1.5rem" pBadge
+      severity="danger"></i>
+    <i class="pi pi-user cursor-pointer" title="Chỉnh sửa thông tin cá nhân" (click)="routeToUser()"
+      style="font-size: 1.5rem"></i>
+    <i class="pi pi-exclamation-circle cursor-pointer" title="Chi tiết" style="font-size: 1.5rem"></i>
+    <i class="pi pi-cog cursor-pointer" title="Cài đặt" style="font-size: 1.5rem"></i>
+    <i class="pi pi-sign-out cursor-pointer" title="Đăng xuất" (click)="handleLogOut()" style="font-size: 1.5rem"></i>
+  </div>
+</div>

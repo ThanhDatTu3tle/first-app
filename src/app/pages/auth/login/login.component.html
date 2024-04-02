@@ -2,34 +2,51 @@
     <div class="flex flex-column align-items-center justify-content-center">
         <div style="border-radius:20px; padding:0.3rem;">
             <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:20px">
-                <!-- <div class="text-center mb-5">
-                    <img src="assets/demo/images/login/avatar.png" alt="Image" height="50" class="mb-3">
-                    <div class="text-900 text-3xl font-medium mb-3">Welcome, Isabel!</div>
-                    <span class="text-600 font-medium">Sign in to continue</span>
-                </div>   -->
                 <div class="text-left mb-7">
                     <span class="text-5xl font-semibold">Login to continue</span>
                 </div>
 
-                <div>
+                <form class="example-form" [formGroup]="loginForm" (ngSubmit)="proceedLogin()">
                     <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
-                    <input id="email1" type="text" placeholder="Email address" ngModel pInputText
-                        class="w-full md:w-30rem mb-5" style="padding:1rem">
+                    <input id="email1" formControlName="email" type="text" placeholder="Email address" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
                     <label for="password1" class="block text-900 text-xl font-medium mb-2">Password</label>
-                    <p-password id="password1" [(ngModel)]="password" placeholder="Password" [toggleMask]="true" [feedback]="false" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
+                    <p-password id="password1" formControlName="password" [(ngModel)]="password" placeholder="Password" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
 
                     <div class="flex align-items-center justify-content-between mb-5 gap-5">
                         <div class="flex align-items-center">
-                            <p-checkbox id="rememberme1" styleClass="mr-2"></p-checkbox>
+                            <p-checkbox id="rememberme1" formControlName="rememberMe" [binary]="true" styleClass="mr-2"></p-checkbox>
                             <label for="rememberme1">Remember me</label>
                         </div>
                         <a class="font-medium no-underline ml-2 text-right cursor-pointer"
                             style="color: var(--primary-color)">Forgot password?</a>
                     </div>
-                    <button pButton pRipple [loading]="loading" (onClick)="load()" label="Login" class="w-full p-3 text-xl"></button>
-                </div>
+                    <button pButton pRipple label="Sign In" class="w-full p-3 text-xl"></button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- <mat-card>
+  <mat-card-header>
+    <h2>User Login</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="loginForm" (ngSubmit)="proceedLogin()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="id">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+
+      <div>
+        <button mat-raised-button color="primary">Login</button>
+        <a routerLink="/register" mat-raised-button color="accent">New User?</a>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card> -->

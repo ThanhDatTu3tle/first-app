@@ -9,6 +9,7 @@ import { UserProfileRoutingModule } from './user-profile-routing.module';
     imports: [
         CommonModule,
         FormsModule,
+
         UserProfileRoutingModule
     ],
     declarations: [UserProfileComponent]

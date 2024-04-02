@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { LoginService } from './login.service';
 
@@ -9,14 +11,22 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent {
   valCheck: string[] = ['remember'];
-
   password!: string;
   lat!: string;
   lng!: string;
   data: any;
   address!: string;
-
   loading: boolean = false;
+  result: any;
+
+  loginForm!: FormGroup;
+
+  constructor(
+    private loginService: LoginService,
+    private builder: FormBuilder,
+    private router: Router
+  ) { sessionStorage.clear() }
+
   load() {
     this.loading = true;
 
@@ -58,12 +68,34 @@ export class LoginComponent {
     }
   };
 
-  constructor(
-    // public layoutService: LayoutService,
-    private loginService: LoginService
-  ) { }
+  proceedLogin(): void {
+    if (this.loginService.users.find((item: any) => item.email === this.loginForm.value.email) &&
+    this.loginService.users.find((item: any) => item.passEncrypt === this.loginForm.value.password)
+    ) {
+      let user = this.loginService.users.find((item: any) => item.email === this.loginForm.value.email);
+      sessionStorage.setItem('email', this.loginForm.value.email);
+      sessionStorage.setItem('passEncrypt', this.loginForm.value.password);
+      sessionStorage.setItem('role', user.role);
+      sessionStorage.setItem('employee_name', user.employee_name);
+      sessionStorage.setItem('id', user.id);
+      this.router.navigate(['']);
+    } else {
+      this.router.navigate(['auth/error']);
+    }
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getUserLocation();
+    this.loginForm = this.builder.group({
+      email: this.builder.control('', Validators.required),
+      password: this.builder.control('', Validators.required),
+      rememberMe: false
+    });
+
+    // setTimeout(() => {
+    //   this.loginForm.patchValue({
+    //     email: 'root.dat@gmail.com'
+    //   })
+    // }, 1000)
   }
 }

@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
   '../../../../node_modules/primeflex/primeflex.scss']
 })
 export class HeaderComponent {
+  userName = sessionStorage.getItem("employee_name");
+
   routeToUser() {
     window.location.href = '/user-profile';
   }

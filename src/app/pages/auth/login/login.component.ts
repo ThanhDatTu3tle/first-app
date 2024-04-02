@@ -73,11 +73,23 @@ export class LoginComponent {
     this.loginService.users.find((item: any) => item.passEncrypt === this.loginForm.value.password)
     ) {
       let user = this.loginService.users.find((item: any) => item.email === this.loginForm.value.email);
-      sessionStorage.setItem('email', this.loginForm.value.email);
-      sessionStorage.setItem('passEncrypt', this.loginForm.value.password);
-      sessionStorage.setItem('role', user.role);
-      sessionStorage.setItem('employee_name', user.employee_name);
       sessionStorage.setItem('id', user.id);
+      sessionStorage.setItem('role', user.role);
+      sessionStorage.setItem('employee_code', user.employee_code);
+      sessionStorage.setItem('employee_name', user.employee_name);
+      sessionStorage.setItem('card_number', user.card_number);
+      sessionStorage.setItem('mobile', user.mobile);
+      sessionStorage.setItem('birthday', user.birthday);
+      sessionStorage.setItem('email', this.loginForm.value.email);
+      sessionStorage.setItem('image', user.image);
+      sessionStorage.setItem('image_card_before', user.image_card_before);
+      sessionStorage.setItem('image_card_after', user.image_card_after);
+      sessionStorage.setItem('login_name', user.login_name);
+      sessionStorage.setItem('passEncrypt', this.loginForm.value.password);
+      sessionStorage.setItem('manager_type_id', user.manager_type_id);
+      sessionStorage.setItem('manager_id', user.manager_id);
+      sessionStorage.setItem('manager_code', user.manager_code);
+      sessionStorage.setItem('manager_name', user.manager_name);
       this.router.navigate(['']);
     } else {
       this.router.navigate(['auth/error']);
@@ -91,11 +103,5 @@ export class LoginComponent {
       password: this.builder.control('', Validators.required),
       rememberMe: false
     });
-
-    // setTimeout(() => {
-    //   this.loginForm.patchValue({
-    //     email: 'root.dat@gmail.com'
-    //   })
-    // }, 1000)
   }
 }

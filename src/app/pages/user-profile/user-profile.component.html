@@ -3,18 +3,131 @@
     <div
       class="flex flex-column align-items-center justify-content-center w-full bg-white border-round-sm border-dashed border-primary-500 surface-overlay p-5"
       style="height: 40%;">
-      <!-- @if () {} -->
-      <i class="pi pi-user cursor-pointer" style="font-size: 5rem"></i>
+      <div *ngIf="employeesData.image === ''; then iconSwap else image"></div>
+      <ng-template #iconSwap><i class="pi pi-user cursor-pointer" style="font-size: 5rem"></i></ng-template>
+      <ng-template #image><img src=`${employeesData.image}` alt="Avatar user"/></ng-template>
       <b>{{ employeesData.employee_name }}</b>
     </div>
-    <div class="w-full bg-white border-round-sm border-dashed border-primary-500 surface-overlay p-5"
+    <div class="flex flex-column justify-content-between bg-white border-round-sm border-dashed border-primary-500 surface-overlay p-5"
       style="height: 60%;">
-      <p>Login name</p>
+      <label for="employee_name" class="block text-900 text-sm font-medium mb-2">Login name</label>      
+      <input type="text" pInputText placeholder="{{ employeesData.login_name }}" [disabled]="true" style="width: 100%; height: 2rem; text-align: center" />
       
+      <label for="password" class="block text-900 text-sm font-medium mb-2">Password <span style="color: red;">*</span></label>      
+      <p-password [(ngModel)]="employeesData.passEncrypt" [toggleMask]="true" [style]="{'width':'100%', 'height': '2rem'}" [inputStyle]="{'width':'100%'}"></p-password>    
+
+      <label for="password" class="block text-900 text-sm font-medium mb-2">Confirm Password <span style="color: red;">*</span></label>      
+      <p-password [(ngModel)]="valueConfirmPass" placeholder="Confirm password" [toggleMask]="true" [style]="{'width':'100%', 'height': '2rem'}" [inputStyle]="{'width':'100%'}"></p-password>    
+
+      <button pButton pRipple label="Change password" class="p-button-success"></button>
     </div>
   </div>
 
-  <div class="detail-info w-9 h-full bg-white border-round-sm border-dashed border-primary-500 surface-overlay p-5">
+  <div class="detail-info flex flex-column justify-content-between w-9 h-full bg-white border-round-sm border-dashed border-primary-500 surface-overlay p-5">
+    <!-- Employee name -->
+    <div class="employee_name flex flex-row w-full align-items-center justify-content-between">
+      <label for="employee_name" class="block text-900 text-base font-medium w-3">Employee Name <span style="color: red;">*</span></label>
+      <input type="text" pInputText [(ngModel)]="employeesData.employee_name" style="width: 100%; height: 2rem" />
+    </div>
 
+    <!-- Employee code -->
+    <div class="employee_code flex flex-row w-full align-items-center justify-content-between">
+      <label for="employee_code" class="block text-900 text-base font-medium w-3">Employee Code</label>
+      <input type="text" pInputText [(ngModel)]="employeesData.employee_code" style="width: 100%; height: 2rem" />
+    </div>
+
+    <!-- group cccd & mobile -->
+    <div class="wrapper-cccd-mobile flex flex-row w-full align-items-center justify-content-between gap-3">
+      <div class="cccd flex flex-row w-full align-items-center justify-content-between">
+        <label for="cccd" class="block text-900 text-base font-medium w-3">CCCD <span style="color: red;">*</span></label>
+        <input type="text" pInputText [(ngModel)]="employeesData.card_number" style="width: 100%; height: 2rem" />
+      </div>
+      <div class="mobile flex flex-row w-full align-items-center justify-content-between">
+        <label for="mobile" class="block text-900 text-base font-medium w-3">Mobile <span style="color: red;">*</span></label>
+        <input type="text" pInputText [(ngModel)]="employeesData.mobile" style="width: 100%; height: 2rem" />
+      </div>
+    </div>
+
+    <!-- group birthday & email -->
+    <div class="wrapper-birthday-email flex flex-row w-full align-items-center justify-content-between gap-3">
+      <div class="email flex flex-row w-full align-items-center justify-content-between">
+        <label for="email" class="block text-900 text-base font-medium w-3">Email <span style="color: red;">*</span></label>
+        <input type="text" pInputText [(ngModel)]="employeesData.email" style="width: 100%; height: 2rem" />
+      </div>
+      <div class="birthday flex flex-row w-full align-items-center justify-content-between">
+        <label for="birthday" class="block text-900 text-base font-medium w-3">Birthday Date <span style="color: red;">*</span></label>
+        <p-calendar [(ngModel)]="employeesData.birthday"  [showIcon]="true" [style]="{'width':'100%', 'height': '2rem'}"></p-calendar>    
+      </div>
+    </div>
+
+    <!-- group images -->
+    <div class="group-imgs flex flex-row align-items-start w-full h-13rem gap-5">
+      <div class="image flex flex-column w-full align-items-center justify-content-between">
+        <div class="wrapper-img-child flex flex-row w-full h-3rem align-items-center justify-content-between">
+          <label for="image" class="block text-900 text-base font-medium w-fit">Image profile</label>
+          <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" (onUpload)="onUpload($event)"></p-fileUpload>
+        </div>
+        
+        <div class="wrapper-img flex align-items-center justify-content-center w-7 bg-white border-round-sm border-dashed border-primary-500 surface-overlay p-5 mt-2 mb-2" style="aspect-ratio: 1 / 1;">
+          <div *ngIf="employeesData.image === ''; then iconSwap else image"></div>
+          <ng-template #iconSwap><i class="pi pi-user cursor-pointer" style="font-size: 5rem"></i></ng-template>
+          <ng-template #image><img src=`${employeesData.image}` alt="Avatar user"/></ng-template>
+        </div>
+      </div>
+
+      <div class="image flex flex-column w-full align-items-center justify-content-between">
+        <div class="wrapper-img-child flex flex-row w-full h-3rem align-items-center justify-content-between">
+          <label for="image" class="block text-900 text-base font-medium w-fit">Image card before</label>
+          <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" (onUpload)="onUpload($event)"></p-fileUpload>
+        </div>
+        
+        <div class="wrapper-img flex align-items-center justify-content-center w-7 bg-white border-round-sm border-dashed border-primary-500 surface-overlay p-5 mt-2 mb-2" style="aspect-ratio: 1 / 1;">
+          <div *ngIf="employeesData.image_card_before === ''; then iconSwap else image"></div>
+          <ng-template #iconSwap><i class="pi pi-user cursor-pointer" style="font-size: 5rem"></i></ng-template>
+          <ng-template #image><img src=`${employeesData.image}` alt="Avatar user before"/></ng-template>
+        </div>
+      </div>
+
+      <div class="image flex flex-column w-full align-items-center justify-content-between">
+        <div class="wrapper-img-child flex flex-row w-full h-3rem align-items-center justify-content-between">
+          <label for="image" class="block text-900 text-base font-medium w-fit">Image card after</label>
+          <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" (onUpload)="onUpload($event)"></p-fileUpload>
+        </div>
+        
+        <div class="wrapper-img flex align-items-center justify-content-center w-7 bg-white border-round-sm border-dashed border-primary-500 surface-overlay p-5 mt-2 mb-2" style="aspect-ratio: 1 / 1;">
+          <div *ngIf="employeesData.image_card_after === ''; then iconSwap else image"></div>
+          <ng-template #iconSwap><i class="pi pi-user cursor-pointer" style="font-size: 5rem"></i></ng-template>
+          <ng-template #image><img src=`${employeesData.image}` alt="Avatar user after"/></ng-template>
+        </div>
+      </div>
+    </div>
+
+    <!-- group employee management -->
+    <p class="text-900 text-base font-medium w-fit h-1rem">Employee Type Manager</p>
+    <div class="wrapper-employee-management flex flex-row w-full align-items-center justify-content-between gap-3">
+      <div class="employee_type flex flex-row w-full align-items-center justify-content-between">
+        <label for="employee_type" class="block text-900 text-base font-medium w-fit">Type</label>
+        <input type="text" pInputText [(ngModel)]="employeesData.manager_type_id" style="width: 80%; height: 2rem" />
+      </div>
+
+      <div class="employee_id flex flex-row w-full align-items-center justify-content-between">
+        <label for="employee_id" class="block text-900 text-base font-medium w-fit">ID</label>
+        <input type="text" pInputText [(ngModel)]="employeesData.manager_id" style="width: 80%; height: 2rem" />
+      </div>
+
+      <div class="employee_code flex flex-row w-full align-items-center justify-content-between">
+        <label for="employee_code" class="block text-900 text-base font-medium w-fit">Code</label>
+        <input type="text" pInputText [(ngModel)]="employeesData.manager_code" style="width: 80%; height: 2rem" />
+      </div>
+
+      <div class="employee_name flex flex-row w-full align-items-center justify-content-between">
+        <label for="employee_name" class="block text-900 text-base font-medium w-fit">Name</label>
+        <input type="text" pInputText [(ngModel)]="employeesData.manager_name" style="width: 80%; height: 2rem" />
+      </div>
+    </div>
+
+
+
+    <button pButton pRipple label="Update" class="p-button-success"></button>
   </div>
 </div>

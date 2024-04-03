@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { LoginService } from './login.service';
-
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss',
@@ -18,6 +17,7 @@ export class LoginComponent {
   address!: string;
   loading: boolean = false;
   result: any;
+  employees: any = [];
 
   loginForm!: FormGroup;
 
@@ -69,31 +69,33 @@ export class LoginComponent {
   };
 
   proceedLogin(): void {
-    if (this.loginService.users.find((item: any) => item.email === this.loginForm.value.email) &&
-    this.loginService.users.find((item: any) => item.passEncrypt === this.loginForm.value.password)
-    ) {
-      let user = this.loginService.users.find((item: any) => item.email === this.loginForm.value.email);
-      sessionStorage.setItem('id', user.id);
-      sessionStorage.setItem('role', user.role);
-      sessionStorage.setItem('employee_code', user.employee_code);
-      sessionStorage.setItem('employee_name', user.employee_name);
-      sessionStorage.setItem('card_number', user.card_number);
-      sessionStorage.setItem('mobile', user.mobile);
-      sessionStorage.setItem('birthday', user.birthday);
-      sessionStorage.setItem('email', this.loginForm.value.email);
-      sessionStorage.setItem('image', user.image);
-      sessionStorage.setItem('image_card_before', user.image_card_before);
-      sessionStorage.setItem('image_card_after', user.image_card_after);
-      sessionStorage.setItem('login_name', user.login_name);
-      sessionStorage.setItem('passEncrypt', this.loginForm.value.password);
-      sessionStorage.setItem('manager_type_id', user.manager_type_id);
-      sessionStorage.setItem('manager_id', user.manager_id);
-      sessionStorage.setItem('manager_code', user.manager_code);
-      sessionStorage.setItem('manager_name', user.manager_name);
-      this.router.navigate(['']);
-    } else {
-      this.router.navigate(['auth/error']);
-    }
+    this.loginService.getAllEmployees().subscribe((employees: any) => {
+      if (employees.find((item: any) => item.email === this.loginForm.value.email) &&
+        employees.find((item: any) => item.passEncrypt === this.loginForm.value.password)
+      ) {
+        let user = this.loginService.employees.find((item: any) => item.email === this.loginForm.value.email);
+        sessionStorage.setItem('id', user.id);
+        sessionStorage.setItem('role', user.role);
+        sessionStorage.setItem('employee_code', user.employee_code);
+        sessionStorage.setItem('employee_name', user.employee_name);
+        sessionStorage.setItem('card_number', user.card_number);
+        sessionStorage.setItem('mobile', user.mobile);
+        sessionStorage.setItem('birthday', user.birthday);
+        sessionStorage.setItem('email', this.loginForm.value.email);
+        sessionStorage.setItem('image', user.image);
+        sessionStorage.setItem('image_card_before', user.image_card_before);
+        sessionStorage.setItem('image_card_after', user.image_card_after);
+        sessionStorage.setItem('login_name', user.login_name);
+        sessionStorage.setItem('passEncrypt', this.loginForm.value.password);
+        sessionStorage.setItem('manager_type_id', user.manager_type_id);
+        sessionStorage.setItem('manager_id', user.manager_id);
+        sessionStorage.setItem('manager_code', user.manager_code);
+        sessionStorage.setItem('manager_name', user.manager_name);
+        this.router.navigate(['']);
+      } else {
+        this.router.navigate(['auth/error']);
+      }
+    });
   }
 
   ngOnInit(): void {

@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 @Component({
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss',
-  '../../../../../node_modules/primeflex/primeflex.scss']
+  styleUrls: ['../../../../../node_modules/primeflex/primeflex.scss']
 })
 export class LoginComponent {
   valCheck: string[] = ['remember'];
@@ -20,6 +19,7 @@ export class LoginComponent {
   employees: any = [];
 
   loginForm!: FormGroup;
+onChangePassword: any;
 
   constructor(
     private loginService: LoginService,
@@ -73,7 +73,7 @@ export class LoginComponent {
       if (employees.find((item: any) => item.email === this.loginForm.value.email) &&
         employees.find((item: any) => item.passEncrypt === this.loginForm.value.password)
       ) {
-        let user = this.loginService.employees.find((item: any) => item.email === this.loginForm.value.email);
+        let user = employees.find((item: any) => item.email === this.loginForm.value.email);
         sessionStorage.setItem('id', user.id);
         sessionStorage.setItem('role', user.role);
         sessionStorage.setItem('employee_code', user.employee_code);
@@ -91,7 +91,7 @@ export class LoginComponent {
         sessionStorage.setItem('manager_id', user.manager_id);
         sessionStorage.setItem('manager_code', user.manager_code);
         sessionStorage.setItem('manager_name', user.manager_name);
-        this.router.navigate(['']);
+        this.router.navigate(['dashboard']);
       } else {
         this.router.navigate(['auth/error']);
       }

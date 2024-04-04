@@ -1,21 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SidebarModule } from 'primeng/sidebar';
-import { ButtonModule } from 'primeng/button';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
-
 import { DashboardComponent } from './dashboard.component';
 import { DashboardsRoutingModule } from './dashboard-routing.module';
 
 @NgModule({
     imports: [
+        // App
         CommonModule,
 
-        SidebarModule,
-        ButtonModule,
-        BreadcrumbModule,
-        
+        // Routing
         DashboardsRoutingModule
     ],
     declarations: [DashboardComponent]

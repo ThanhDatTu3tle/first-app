@@ -6,16 +6,11 @@ const httpOptions ={
   headers:new HttpHeaders({'Content-Type':'Application/json'})
 }
 
-import data from '../../../employeesData.json';
-
-
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   constructor(private http: HttpClient) {}
-  employees: any = data; 
-
   isLoggedIn(){
     return sessionStorage.getItem('email') != null;
   }

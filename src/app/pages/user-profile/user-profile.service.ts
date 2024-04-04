@@ -1,6 +1,10 @@
 import { Observable, Subject } from "rxjs";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+const httpOptions ={
+    headers:new HttpHeaders({'Content-Type':'Application/json'})
+  }
 
 @Injectable({
     providedIn: 'root',
@@ -9,7 +13,7 @@ export class UserProfileService {
     
     constructor(public http: HttpClient) {};
 
-    getAll() {
-        return this.http.get('localhost: 3000');
+    changePassword(id: string, passEncrypt: string) {
+        return this.http.put(`http://localhost:3000/employess/:${id}`, passEncrypt, httpOptions);
     }
 }

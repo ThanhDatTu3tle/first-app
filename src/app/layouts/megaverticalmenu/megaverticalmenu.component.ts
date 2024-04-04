@@ -7,8 +7,7 @@ import data from './data.json';
 @Component({
   selector: 'app-megaverticalmenu',
   templateUrl: './megaverticalmenu.component.html',
-  styleUrls: [`./megaverticalmenu.component.scss`,
-    `./../../../../node_modules/primeflex/primeflex.css`]
+  styleUrls: [`./../../../../node_modules/primeflex/primeflex.css`]
 })
 export class MegaVertiCalMenuComponent implements OnInit {
   megaMenuItems: MegaMenuItem[] = [];

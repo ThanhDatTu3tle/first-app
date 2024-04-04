@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // App
 import { AppRoutingModule } from './app-routing.module';
@@ -8,6 +11,7 @@ import { AppComponent } from './app.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 // Layouts  
+// import { AuthModule } from './pages/auth/auth.module';
 import { LayoutsModule } from './layouts/layouts.module';
 
 @NgModule({
@@ -21,8 +25,12 @@ import { LayoutsModule } from './layouts/layouts.module';
   imports: [
     // App
     AppRoutingModule,
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
 
     // Layouts
+    // AuthModule,
     LayoutsModule
   ],
   providers: [],

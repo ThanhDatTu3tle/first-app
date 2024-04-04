@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { UserProfileService } from './user-profile.service';
 
 interface UploadEvent {
   originalEvent: Event;
@@ -37,9 +38,21 @@ export class UserProfileComponent {
   valueConfirmPass: string = "";
   date: Date | undefined;
 
-  constructor(private messageService: MessageService) {}
+  constructor(
+    private messageService: MessageService,
+    private userProfile: UserProfileService
+  ) {}
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   // changes.prop contains the old and the new value...
+  // }
 
   onUpload(event: UploadEvent) {
     this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode' });
+  }
+
+  onChangePassword() {
+    console.log(this.valueConfirmPass)
+    this.userProfile.changePassword("f4d0f088-17e2-435d-9a8e-bb252799ec93", this.valueConfirmPass)
   }
 }

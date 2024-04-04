@@ -1,28 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LayoutsComponent } from './layouts.component';
+// Routing
+// import { LayoutsRoutingModule } from './layouts-routing.module';
 
-// Components - Layouts
+// Components
 import { HeaderModule } from './header/header.module';
 import { MegaVerticalMenuModule } from './megaverticalmenu/megaverticalmenu.module';
 
+// Layouts
+import { LayoutsComponent } from './layouts.component';
 @NgModule({
     imports: [
         // App
         CommonModule,
         RouterModule,
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
+        
+        // Routing
+        // LayoutsRoutingModule,
 
-        // Components - Layouts
+        // Components
         HeaderModule,
         MegaVerticalMenuModule
     ],

@@ -18,8 +18,8 @@
 
       <label for="password" class="block text-900 text-sm font-medium mb-2">Confirm Password <span style="color: red;">*</span></label>      
       <p-password [(ngModel)]="valueConfirmPass" placeholder="Confirm password" [toggleMask]="true" [style]="{'width':'100%', 'height': '2rem'}" [inputStyle]="{'width':'100%'}"></p-password>    
-
-      <button pButton pRipple label="Change password" class="p-button-success"></button>
+      
+      <button pButton pRipple label="Change password" (click)="onChangePassword()" class="p-button-success"></button>
     </div>
   </div>
 

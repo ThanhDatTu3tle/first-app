@@ -4,9 +4,11 @@ import { CommonModule } from '@angular/common';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 import { SummaryComponent } from './summary.component';
 import { SummaryRoutingModule } from './summary-routing.module';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     imports: [
@@ -15,6 +17,8 @@ import { SummaryRoutingModule } from './summary-routing.module';
         SidebarModule,
         ButtonModule,
         BreadcrumbModule,
+        ProgressBarModule,
+        ToastModule,
 
         SummaryRoutingModule
     ],

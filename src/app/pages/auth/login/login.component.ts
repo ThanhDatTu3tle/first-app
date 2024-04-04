@@ -19,7 +19,7 @@ export class LoginComponent {
   employees: any = [];
 
   loginForm!: FormGroup;
-onChangePassword: any;
+  onChangePassword: any;
 
   constructor(
     private loginService: LoginService,

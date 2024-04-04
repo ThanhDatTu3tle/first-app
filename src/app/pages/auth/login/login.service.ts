@@ -10,7 +10,9 @@ const httpOptions ={
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {};
+
   isLoggedIn(){
     return sessionStorage.getItem('email') != null;
   }
@@ -24,7 +26,7 @@ export class LoginService {
   // }
 
   getAllEmployees() {
-    return this.http.get('http://localhost:3000/employess/');
+    return this.http.get('http://localhost:3000/employees/');
   }
  
   getGeolocation(latitude: any, longitude: any) {

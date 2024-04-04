@@ -4,4 +4,60 @@
     </div>
     <br />
     <p-breadcrumb class="max-w-full bg-white" [model]="items" [home]="home"></p-breadcrumb>
+
+    <div class="wrapper-selector flex mt-3 gap-3">
+        <p-dropdown class="w-full h-fit" [options]="months" [(ngModel)]="selectedMonths" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select month">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-2">
+                    <div>{{ selectedOption.name }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-month pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <div>{{ month.name }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+
+        <p-dropdown class="w-full h-fit" [options]="users" [(ngModel)]="selectedUser" optionLabel="employee_name" [filter]="true" filterBy="employee_name" [showClear]="true" placeholder="Select employee">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-2">
+                    <div>{{ selectedOption.employee_name }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-user pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <div>{{ user.employee_name }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+
+        <p-dropdown class="w-full h-fit" [options]="status" [(ngModel)]="selectedStatus" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select Status">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-2">
+                    <div>{{ selectedOption.name }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-status pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <div>{{ status.name }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+
+        <p-dropdown class="w-full h-fit" [options]="testingStatus" [(ngModel)]="selectedTestingStatus" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select Testing Status">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-2">
+                    <div>{{ selectedOption.name }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-testingStatus pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <div>{{ testingStatus.name }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+        <div></div>
+        <div></div>
+    </div>
 </div>

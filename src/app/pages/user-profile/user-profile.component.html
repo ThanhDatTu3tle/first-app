@@ -61,7 +61,7 @@
     </div>
 
     <!-- group images -->
-    <div class="group-imgs flex flex-row align-items-start w-full h-13rem gap-5">
+    <div class="group-imgs flex flex-row align-items-start w-full h-16rem gap-5">
       <div class="image flex flex-column w-full align-items-center justify-content-between">
         <div class="wrapper-img-child flex flex-row w-full h-3rem align-items-center justify-content-between">
           <label for="image" class="block text-900 text-base font-medium w-fit">Image profile</label>
@@ -103,30 +103,30 @@
     </div>
 
     <!-- group employee management -->
-    <p class="text-900 text-base font-medium w-fit h-1rem">Employee Type Manager</p>
-    <div class="wrapper-employee-management flex flex-row w-full align-items-center justify-content-between gap-3">
-      <div class="employee_type flex flex-row w-full align-items-center justify-content-between">
-        <label for="employee_type" class="block text-900 text-base font-medium w-fit">Type</label>
-        <input type="text" pInputText [(ngModel)]="employeesData.manager_type_id" style="width: 80%; height: 2rem" />
-      </div>
-
-      <div class="employee_id flex flex-row w-full align-items-center justify-content-between">
-        <label for="employee_id" class="block text-900 text-base font-medium w-fit">ID</label>
-        <input type="text" pInputText [(ngModel)]="employeesData.manager_id" style="width: 80%; height: 2rem" />
-      </div>
-
-      <div class="employee_code flex flex-row w-full align-items-center justify-content-between">
-        <label for="employee_code" class="block text-900 text-base font-medium w-fit">Code</label>
-        <input type="text" pInputText [(ngModel)]="employeesData.manager_code" style="width: 80%; height: 2rem" />
-      </div>
-
-      <div class="employee_name flex flex-row w-full align-items-center justify-content-between">
-        <label for="employee_name" class="block text-900 text-base font-medium w-fit">Name</label>
-        <input type="text" pInputText [(ngModel)]="employeesData.manager_name" style="width: 80%; height: 2rem" />
+    <div class="wrapper flex flex-column w-full justify-content-between gap-3">
+      <p class="text-900 text-base font-medium w-fit h-1rem">Employee Manager</p>
+      <div class="wrapper-employee-management flex flex-row w-full align-items-center justify-content-between gap-3">
+        <div class="employee_type flex flex-row w-full align-items-center justify-content-between">
+          <label for="employee_type" class="block text-900 text-base font-medium w-fit">Type</label>
+          <input type="text" pInputText [(ngModel)]="employeesData.manager_type_id" style="width: 80%; height: 2rem" />
+        </div>
+  
+        <div class="employee_id flex flex-row w-full align-items-center justify-content-between">
+          <label for="employee_id" class="block text-900 text-base font-medium w-fit">ID</label>
+          <input type="text" pInputText [(ngModel)]="employeesData.manager_id" style="width: 80%; height: 2rem" />
+        </div>
+  
+        <div class="employee_code flex flex-row w-full align-items-center justify-content-between">
+          <label for="employee_code" class="block text-900 text-base font-medium w-fit">Code</label>
+          <input type="text" pInputText [(ngModel)]="employeesData.manager_code" style="width: 80%; height: 2rem" />
+        </div>
+  
+        <div class="employee_name flex flex-row w-full align-items-center justify-content-between">
+          <label for="employee_name" class="block text-900 text-base font-medium w-fit">Name</label>
+          <input type="text" pInputText [(ngModel)]="employeesData.manager_name" style="width: 80%; height: 2rem" />
+        </div>
       </div>
     </div>
-
-
 
     <button pButton pRipple label="Update" class="p-button-success"></button>
   </div>

@@ -1,11 +1,97 @@
-<div class="wrapper w-full h-full bg-white border-round-sm border-dashed border-primary-500 surface-overlay p-5">
-    <div class="title-btn-filter flex w-full align-items-center justify-content-between">
-        <h1>DASHBOARD SUMMARY</h1>
-        <p-sidebar [(visible)]="sidebarVisible" position="right">
-            <p>Month</p>
-        </p-sidebar>
-        <p-button type="button" (click)="sidebarVisible = true" icon="pi pi-filter"></p-button>
+<div class="wrapper w-full h-full bg-transparent border-round-sm surface-overlay p-5">
+  <div class="title-btn-filter flex w-full align-items-center justify-content-between">
+    <h1>DASHBOARD SUMMARY</h1>
+    <p-sidebar [(visible)]="sidebarVisible" position="right">
+      <p>Month</p>
+    </p-sidebar>
+    <p-button type="button" (click)="sidebarVisible = true" icon="pi pi-filter"></p-button>
+  </div>
+  <br />
+  <p-breadcrumb class="max-w-full bg-white" [model]="items" [home]="home"></p-breadcrumb>
+
+  <div class="flex mt-3 gap-2">
+    <div
+      class="w-3 bg-white border-round-sm border-dashed border-primary-500 surface-overlay p-5 cursor-pointer">
+      <div class="card mb-0">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3">Số Cửa hàng khảo sát</span>
+          </div>
+          <div class="flex align-items-center justify-content-center bg-blue-100 border-round"
+            [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+            <i class="pi pi-shopping-cart text-blue-500 text-xl"></i>
+          </div>
+        </div>
+        <div class="flex flex-row w-full align-items-end justify-content-between">
+          <p class="text-green-900 font-medium">1 cửa hàng</p>
+        </div>
+      </div>
     </div>
-    <br />
-    <p-breadcrumb class="max-w-full bg-white" [model]="items" [home]="home"></p-breadcrumb>
+    <div
+      class="w-3 bg-white border-round-sm border-dashed border-green-500 surface-overlay p-5 cursor-pointer">
+      <div class="card mb-0">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3">Tổng số Cửa hàng đã khảo sát</span>
+          </div>
+          <div class="flex align-items-center justify-content-center bg-green-100 border-round"
+            [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+            <i class="pi pi-shopping-cart text-green-500 text-xl"></i>
+          </div>
+        </div>
+        <div class="flex flex-row w-full align-items-end justify-content-between">
+          <p class="text-green-900 font-medium">0 cửa hàng</p>
+          <p-progressBar class="bg-blue-400" [value]="50"></p-progressBar>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-3 bg-white border-round-sm border-dashed border-red-500 surface-overlay p-5 cursor-pointer">
+      <div class="card mb-0">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3">Tổng số Cửa hàng chưa khảo sát</span>
+          </div>
+          <div class="flex align-items-center justify-content-center bg-red-100 border-round"
+            [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+            <i class="pi pi-shopping-cart text-red-500 text-xl"></i>
+          </div>
+        </div>
+        <div class="flex flex-row w-full align-items-end justify-content-between">
+          <p class="text-green-900 font-medium">100 cửa hàng</p>
+          <p-progressBar class="bg-red-400" [value]="100"></p-progressBar>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-3 bg-white border-round-sm border-dashed border-purple-500 surface-overlay p-5 cursor-pointer">
+      <div class="card mb-0">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3">Bình luận</span>
+            <div class="text-900 font-medium text-xl">152 chưa đọc</div>
+          </div>
+          <div class="flex align-items-center justify-content-center bg-purple-100 border-round"
+            [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+            <i class="pi pi-comment text-purple-500 text-xl"></i>
+          </div>
+        </div>
+        <span class="text-purple-500 font-medium">85 </span>
+        <span class="text-500">đã phản hồi</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex mt-3 gap-2">
+    <div class="w-4 white border-round-sm border-solid border-primary surface-overlay p-5 cursor-pointer">
+      <div>
+        <span class="block text-500 mb-3">TỔNG HỢP TÌNH TRẠNG BÁO CÁO</span>
+      </div>
+    </div>
+    <div class="w-8 bg-white border-round-sm border-solid border-primary surface-overlay p-5 cursor-pointer">
+      <div>
+        <span class="block text-500 mb-3">TỔNG HỢP CÁC LÝ DO BÁO CÁO</span>
+      </div>
+    </div>
+  </div>
 </div>

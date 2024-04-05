@@ -10,8 +10,7 @@ interface UploadEvent {
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss',
-  '../../../../node_modules/primeflex/primeflex.scss'],
+  styleUrls: ['../../../../node_modules/primeflex/primeflex.scss'],
   providers: [MessageService]
 })
 export class UserProfileComponent {
@@ -29,10 +28,10 @@ export class UserProfileComponent {
     "image_card_after": sessionStorage.getItem('image_card_after'),
     "login_name": sessionStorage.getItem('login_name'),
     "passEncrypt": sessionStorage.getItem('passEncrypt'),
-    "manager_type_id": sessionStorage.getItem('manager_type_id'),
     "manager_id": sessionStorage.getItem('manager_id'),
     "manager_code": sessionStorage.getItem('manager_code'),
     "manager_name": sessionStorage.getItem('manager_name'),
+    "manager_samsung": sessionStorage.getItem('manager_samsung'),
   };
 
   valueConfirmPass: string = "";

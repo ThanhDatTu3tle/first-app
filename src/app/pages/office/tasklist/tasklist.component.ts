@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../auth/login/login.service';
+import { TaskListService } from './tasklist.service';
+import { UserProfileService } from '../../user-profile/user-profile.service';
 
 import { MenuItem } from 'primeng/api';
 
 interface Months {
   name: string;
 }
-
 interface Status {
   name: string;
 }
-
 interface TestingStatus {
   name: string;
 }
@@ -26,17 +25,23 @@ export class TasklistComponent implements OnInit {
 
   months: Months[] = [];
   selectedMonths!: Months;
-
-  status: Status[] = [];
-  selectedStatus!: Status;
-
-  testingStatus: TestingStatus[] = [];
-  selectedTestingStatus!: TestingStatus;
-
   users: any = [];
   selectedUser!: any;
+  status: Status[] = [];
+  selectedStatus!: Status;
+  testingStatus: TestingStatus[] = [];
+  selectedTestingStatus!: TestingStatus;
+  valueTag: string = '';
+  valueTaskID: string = '';
 
-  constructor(private loginService: LoginService) { }
+  tasklists: any = [];
+  taskInToDo: any = [];
+  taskInProcess: any = [];
+  slBug: any = [];
+  slTaskLate: any = [];
+  employeeInProcess: any = [];
+
+  constructor(private taskListService: TaskListService) { }
 
   ngOnInit() {
     // Breadcrumb
@@ -75,10 +80,16 @@ export class TasklistComponent implements OnInit {
       { name: 'Pass' },
       { name: 'Re-open' },
     ];
-    this.loginService.getAllEmployees().subscribe((employees: any) => {
+    this.taskListService.getAllEmployees().subscribe((employees: any) => {
       this.users = employees;
     });
 
-    //
+    // Statistical
+    this.taskListService.getAllTaskList().subscribe((tasklist: any) => {
+      this.tasklists = tasklist;
+      this.taskInToDo = tasklist.filter((item: { status: string; }) => item.status === "ToDo");
+      this.taskInProcess = tasklist.filter((item: { status: string; }) => item.status === "Develop");
+      this.employeeInProcess = this.taskInProcess;
+    })
   }
 }

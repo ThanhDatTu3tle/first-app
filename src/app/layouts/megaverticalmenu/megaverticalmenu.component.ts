@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { MegaMenuItem } from 'primeng/api';
 import { MegaMenuService } from './megaverticalmenu.service';
 
-// import data from './data.json';
-
 @Component({
   selector: 'app-megaverticalmenu',
   templateUrl: './megaverticalmenu.component.html',
@@ -45,7 +43,7 @@ export class MegaVertiCalMenuComponent implements OnInit {
                   {
                     label: `${itemChild.label}`,
                     icon: `${itemChild.icon}`,
-                    url: `${itemChild.routerLink}`
+                    routerLink: `${itemChild.routerLink}`
                   }
                 ))
               }

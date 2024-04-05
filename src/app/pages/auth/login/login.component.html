@@ -6,9 +6,9 @@
                     <span class="text-5xl font-semibold">Login to continue</span>
                 </div>
 
-                <form class="example-form" [formGroup]="loginForm" (ngSubmit)="proceedLogin()">
-                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
-                    <input id="email1" formControlName="email" type="text" placeholder="Email address" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+                <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login()">
+                    <label for="login_name" class="block text-900 text-xl font-medium mb-2">Login name</label>
+                    <input id="login_name" formControlName="login_name" type="text" placeholder="Login name" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
                     <label for="password1" class="block text-900 text-xl font-medium mb-2">Password</label>
                     <p-password id="password1" formControlName="password" [(ngModel)]="password" placeholder="Password" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
@@ -21,7 +21,7 @@
                         <a class="font-medium no-underline ml-2 text-right cursor-pointer"
                             style="color: var(--primary-color)">Forgot password?</a>
                     </div>
-                    <button pButton pRipple label="Sign In" class="w-full p-3 text-xl"></button>
+                    <button pButton pRipple label="Log In" class="w-full p-3 text-xl"></button>
                 </form>
             </div>
         </div>

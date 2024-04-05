@@ -23,9 +23,64 @@ export class LoginComponent {
 
   constructor(
     private loginService: LoginService,
-    private builder: FormBuilder,
+    private formBuilder: FormBuilder,
     private router: Router
   ) { sessionStorage.clear() }
+
+  ngOnInit(): void {
+    this.getUserLocation();
+    this.loginForm = this.formBuilder.group({
+      login_name: this.formBuilder.control('', Validators.required),
+      password: this.formBuilder.control('', Validators.required),
+      rememberMe: false
+    })
+  }
+
+  // Cách 1:
+  login(): void {
+    let payload = {
+      login_name: this.loginForm.value.login_name,
+      password: this.loginForm.value.password
+    }
+    this.loginService.postLogin(payload).subscribe(
+      (data: any) => {
+        if (data.result === "OK") {
+          sessionStorage.setItem('id', data.data.employee[0].id);
+          sessionStorage.setItem('role', data.data.employee[0].role);
+          sessionStorage.setItem('employee_code', data.data.employee[0].employee_code);
+          sessionStorage.setItem('employee_name', data.data.employee[0].employee_name);
+          sessionStorage.setItem('card_number', data.data.employee[0].card_number);
+          sessionStorage.setItem('mobile', data.data.employee[0].mobile);
+          sessionStorage.setItem('birthday', data.data.employee[0].birthday);
+          sessionStorage.setItem('email', data.data.employee[0].email);
+          sessionStorage.setItem('image', data.data.employee[0].image);
+          sessionStorage.setItem('image_card_before', data.data.employee[0].image_card_before);
+          sessionStorage.setItem('image_card_after', data.data.employee[0].image_card_after);
+          sessionStorage.setItem('login_name', this.loginForm.value.login_name);
+          sessionStorage.setItem('passEncrypt', this.loginForm.value.password);
+          sessionStorage.setItem('manager_id', data.data.employee[0].manager_id);
+          sessionStorage.setItem('manager_code', data.data.employee[0].manager_code);
+          sessionStorage.setItem('manager_name', data.data.employee[0].manager_name);
+          sessionStorage.setItem('manager_samsung', data.data.employee[0].manager_samsung);
+          this.router.navigate(['dashboard']);
+        }
+      }
+    )
+  }
+
+  // Cách 2:
+  // login(): void {
+  //   let login_name = this.loginForm.value.login_name;
+  //   let password = this.loginForm.value.password;
+  //   this.loginService.postLogin2(login_name, password).subscribe(
+  //     (data: any) => {
+  //       if (data.result === "OK") {
+  //         sessionStorage.setItem('login_name', this.loginForm.value.login_name);
+  //         this.router.navigate(['dashboard']);
+  //       }
+  //     }
+  //   )
+  // }
 
   load() {
     this.loading = true;
@@ -68,42 +123,16 @@ export class LoginComponent {
     }
   };
 
-  proceedLogin(): void {
-    this.loginService.getAllEmployees().subscribe((employees: any) => {
-      if (employees.find((item: any) => item.email === this.loginForm.value.email) &&
-        employees.find((item: any) => item.passEncrypt === this.loginForm.value.password)
-      ) {
-        let user = employees.find((item: any) => item.email === this.loginForm.value.email);
-        sessionStorage.setItem('id', user.id);
-        sessionStorage.setItem('role', user.role);
-        sessionStorage.setItem('employee_code', user.employee_code);
-        sessionStorage.setItem('employee_name', user.employee_name);
-        sessionStorage.setItem('card_number', user.card_number);
-        sessionStorage.setItem('mobile', user.mobile);
-        sessionStorage.setItem('birthday', user.birthday);
-        sessionStorage.setItem('email', this.loginForm.value.email);
-        sessionStorage.setItem('image', user.image);
-        sessionStorage.setItem('image_card_before', user.image_card_before);
-        sessionStorage.setItem('image_card_after', user.image_card_after);
-        sessionStorage.setItem('login_name', user.login_name);
-        sessionStorage.setItem('passEncrypt', this.loginForm.value.password);
-        sessionStorage.setItem('manager_type_id', user.manager_type_id);
-        sessionStorage.setItem('manager_id', user.manager_id);
-        sessionStorage.setItem('manager_code', user.manager_code);
-        sessionStorage.setItem('manager_name', user.manager_name);
-        this.router.navigate(['dashboard']);
-      } else {
-        this.router.navigate(['auth/error']);
-      }
-    });
-  }
-
-  ngOnInit(): void {
-    this.getUserLocation();
-    this.loginForm = this.builder.group({
-      email: this.builder.control('', Validators.required),
-      password: this.builder.control('', Validators.required),
-      rememberMe: false
-    });
-  }
+  // proceedLogin(): void {
+  //   this.loginService.getAllEmployees().subscribe((employees: any) => {
+  //     if (employees.find((item: any) => item.email === this.loginForm.value.email) &&
+  //       employees.find((item: any) => item.passEncrypt === this.loginForm.value.password)
+  //     ) {
+  //       let user = employees.find((item: any) => item.email === this.loginForm.value.email);
+  //       this.router.navigate(['dashboard']);
+  //     } else {
+  //       this.router.navigate(['auth/error']);
+  //     }
+  //   });
+  // }
 }

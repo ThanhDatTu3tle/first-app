@@ -4,7 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 import { TasklistComponent } from './tasklist.component';
 import { TasklistRoutingModule } from './tasklist-routing.module';
@@ -13,10 +15,14 @@ import { TasklistRoutingModule } from './tasklist-routing.module';
     imports: [
         // App
         CommonModule,
+        FormsModule,
 
+        // Primeng
         BreadcrumbModule,
         DropdownModule,
-        FormsModule,
+        InputTextModule,
+        ButtonModule,
+        TableModule,
 
         // Routing
         TasklistRoutingModule

@@ -12,6 +12,10 @@ export class UserProfileService {
     
     constructor(private http: HttpClient) {};
 
+    getAllEmployees() {
+        return this.http.get('http://localhost:3000/employees/');
+    }
+
     changePassword(id: string, passEncrypt: string) {
         return this.http.put(`http://localhost:3000/employees/:${id}`, passEncrypt, httpOptions);
     }

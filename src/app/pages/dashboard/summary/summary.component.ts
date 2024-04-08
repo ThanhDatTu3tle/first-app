@@ -15,9 +15,28 @@ export class SummaryComponent implements OnInit {
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {
-    series: [{
-      data: [1, 2, 3],
-      type: 'line'
+    chart: {
+      type: 'variable pie',
+    },
+    title: {
+      text: '',
+    },
+    // tooltip: {
+    //   pointFormat: '{point.z}'
+    // },
+    series: [{   
+      borderWidth: 5, 
+      data: [{
+        name: 'Số cửa hàng đã khảo sát',
+        color: '#009933',
+        y: 125
+      }, {
+        name: 'Số cửa hàng đã khảo sát',
+        color: '#FA8072',
+        y: 33
+      }],
+      innerSize: '77%',
+      type: 'pie'
     }]
   };
 

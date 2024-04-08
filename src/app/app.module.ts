@@ -7,12 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// Pages
+// Pages - components
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 // Layouts  
 // import { AuthModule } from './pages/auth/auth.module';
 import { LayoutsModule } from './layouts/layouts.module';
+
+// Pages - modules
+import { DashboardModule } from './pages/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { LayoutsModule } from './layouts/layouts.module';
 
     // Layouts
     // AuthModule,
-    LayoutsModule
+    LayoutsModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

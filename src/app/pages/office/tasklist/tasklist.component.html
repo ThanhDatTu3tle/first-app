@@ -175,19 +175,19 @@
     </div>
 
     <div class="wrapper-table flex flex-column w-full mt-2">
-      <!-- ToDo table -->
+      <!-- To-do table -->
       <p-table [value]="taskInToDo" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
           <tr>
-            <th>{{ taskInToDo[0].status }}</th>
-            <th>Task name</th>
-            <th>Start date</th>
-            <th>End date</th>
-            <th>Main day</th>
-            <th>Created by</th>
-            <th>Tag</th>
-            <th>Assignee</th>
-            <th>Edit</th>
+            <th class="w-1">{{ taskInToDo[0].status }}</th>
+            <th class="w-4">Task name</th>
+            <th class="w-1 text-center">Start date</th>
+            <th class="w-1 text-center">End date</th>
+            <th class="w-1">Main day</th>
+            <th class="w-1">Created by</th>
+            <th class="w-2 text-right">Tag</th>
+            <th class="w-1">Assignee</th>
+            <th class="w-1 text-left">Edit</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-taskInToDo>
@@ -197,28 +197,31 @@
             </td>
             <td>{{ taskInToDo.task_name }}</td>
             <td>
-              <div class="flex gap-2">
-                <i class="pi pi-clock"></i>
+              <div class="flex gap-2 align-items-center">
                 <i class="pi pi-flag-fill" style="color: red;"></i>
                 {{ taskInToDo.start_date }}
               </div>
             </td>
             <td>
-              <div class="flex gap-3">
-                <i class="pi pi-arrow-right" style="color: green; font-size: 1.2rem;"></i>
+              <div class="flex gap-2 align-items-center">
+                <i class="pi pi-arrow-right" style="color: green; font-size: 0.8rem;"></i>
                 {{ taskInToDo.end_date }}
               </div>
             </td>
             <td>
               <p class="w-fit h-fit bg-green-500 border-round-lg border-green-500 p-2 text-white">
-                {{ taskInToDo.main_day }} day</p>
+                {{ taskInToDo.main_day }} 
+                <span *ngIf="taskInToDo.main_day != 1; else oneDay">days</span>
+                <ng-template #oneDay>day</ng-template>
+              </p>
             </td>
             <td>{{ taskInToDo.created_by_name }}</td>
             <td>    
-              <p class="w-fit h-fit bg-yellow-300 border-round-sm border-primary-500 p-2 gap-2" *ngFor="let item of taskInToDo.tag.slice(0, -1).split(', ')">{{ item }}</p>  
-              <!-- <p class="bg-yellow-300 border-round-sm border-primary-500 p-2 gap-1">{{ taskInToDo.tag.slice(0, -1).split(', ') }}</p> -->
+              <div class="flex flex-row w-full justify-content-end gap-2" *ngFor="let item of taskInToDo.tag.slice(0, -1).split(', ')">
+                <p class="w-fit bg-yellow-300 border-round-sm border-primary-500 p-2"  *ngFor="let x of item.split(',')">{{ x }}</p>
+              </div>
             </td>
-            <td><img src="{{ taskInToDo.image }}" alt="avatar" class="w-3rem h-3rem border-circle"></td>
+            <td><img src="{{ taskInToDo.image }}" alt="{{ taskInToDo.assignees_name }}" class="w-3rem h-3rem border-circle" title="{{ taskInToDo.assignees_name }}"></td>
             <td><i class="pi pi-ellipsis-v"></i></td>
           </tr>
         </ng-template>
@@ -228,42 +231,54 @@
       <p-table [value]="taskInProcess" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
           <tr>
-            <th>{{ taskInProcess[0].status }}</th>
-            <th>Task name</th>
-            <th>Start date</th>
-            <th>End date</th>
-            <th>Main day</th>
-            <th>Created by</th>
-            <th>Tag</th>
-            <th>Assignee</th>
-            <th>Edit</th>
+            <th class="w-1">{{ taskInProcess[0].status }}</th>
+            <th class="w-4">Task name</th>
+            <th class="w-1 text-center">Start date</th>
+            <th class="w-1 text-center">End date</th>
+            <th class="w-1">Main day</th>
+            <th class="w-1">Created by</th>
+            <th class="w-2 text-right">Tag</th>
+            <th class="w-1">Assignee</th>
+            <th class="w-1">Edit</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-taskInProcess>
           <tr>
             <td>
-              <p class="w-fit h-fit surface-200 border-round-lg border-primary-500 p-2">#{{ taskInProcess.task_id }}</p>
+              <div class="w-fit h-fit flex gap-2">
+                <p class="w-fit h-fit surface-200 border-round-lg border-primary-500 p-2">#{{ taskInProcess.task_id }}</p>
+                <p-badge [value]="taskInProcess.prioritize" severity="warning"></p-badge>
+              </div>
             </td>
-            <td>{{ taskInProcess.task_name }}</td>
+            <td class="w-25rem">{{ taskInProcess.task_name }}</td>
             <td>
-              <div class="flex gap-2">
-                <i class="pi pi-clock"></i>
+              <div class="flex gap-2 align-items-center">
                 <i class="pi pi-flag-fill" style="color: red;"></i>
                 {{ taskInProcess.start_date }}
               </div>
             </td>
             <td>
-              <div class="flex gap-3">
-                <i class="pi pi-arrow-right" style="color: green; font-size: 1.2rem;"></i>
+              <div class="flex gap-2 align-items-center">
+                <i class="pi pi-arrow-right" style="color: green; font-size: 0.8rem;"></i>
                 {{ taskInProcess.end_date }}
               </div>
             </td>
             <td>
               <p class="w-fit h-fit bg-green-500 border-round-lg border-green-500 p-2 text-white">
-                {{ taskInProcess.main_day }} day</p>
+                {{ taskInProcess.main_day }} 
+                <span *ngIf="taskInProcess.main_day != 1; else oneDay">days</span>
+                <ng-template #oneDay>day</ng-template>
+              </p>
             </td>
             <td>{{ taskInProcess.created_by_name }}</td>
-            <td>{{ taskInProcess.tag }}</td>
+            <td>
+              <div class="flex flex-row w-full justify-content-end gap-2" *ngFor="let item of taskInProcess.tag.slice(0, -1).split(', ')">
+                <div class="w-fit bg-yellow-300 border-round-sm border-primary-500 p-2"  *ngFor="let x of item.split(',')">
+                  <div *ngIf="x === ''; else empty" class="hidden"></div>
+                  <ng-template #empty>{{ x }}</ng-template>
+                </div>
+              </div>
+            </td>
             <td><img src="{{ taskInProcess.image }}" alt="avatar" class="w-3rem h-3rem border-circle"></td>
             <td><i class="pi pi-ellipsis-v"></i></td>
           </tr>
@@ -271,6 +286,114 @@
       </p-table>
 
       <!-- Completed table -->
+      <p-table [value]="taskCompleted" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="w-1">{{ taskCompleted[0].status }}</th>
+            <th class="w-4">Task name</th>
+            <th class="w-1 text-center">Start date</th>
+            <th class="w-1 text-center">End date</th>
+            <th class="w-1">Main day</th>
+            <th class="w-1">Created by</th>
+            <th class="w-2 text-right">Tag</th>
+            <th class="w-1">Assignee</th>
+            <th class="w-1">Edit</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-taskCompleted>
+          <tr>
+            <td>
+              <p class="w-fit h-fit surface-200 border-round-lg border-primary-500 p-2">#{{ taskCompleted.task_id }}</p>
+            </td>
+            <td class="w-25rem">
+              <span class="w-fit h-fit bg-green-500 border-round-lg border-green-500 p-2 text-white mr-2">Completed</span>
+              {{ taskCompleted.task_name }}
+            </td>
+            <td>
+              <div class="flex gap-2 align-items-center">
+                <i class="pi pi-flag-fill" style="color: red;"></i>
+                {{ taskCompleted.start_date }}
+              </div>
+            </td>
+            <td>
+              <div class="flex gap-2 align-items-center">
+                <i class="pi pi-arrow-right" style="color: green; font-size: 0.8rem;"></i>
+                {{ taskCompleted.end_date }}
+              </div>
+            </td>
+            <td>
+              <p class="w-fit h-fit bg-green-500 border-round-lg border-green-500 p-2 text-white">
+                {{ taskCompleted.main_day }} 
+                <span *ngIf="taskCompleted.main_day != 1; else oneDay">days</span>
+                <ng-template #oneDay>day</ng-template>
+              </p>
+            </td>
+            <td>{{ taskCompleted.created_by_name }}</td>
+            <td>
+              <div class="flex flex-row w-full justify-content-end gap-2" *ngFor="let item of taskCompleted.tag.slice(0, -1).split(', ')">
+                <p class="w-fit bg-yellow-300 border-round-sm border-primary-500 p-2"  *ngFor="let x of item.split(',')">{{ x }}</p>
+              </div>
+            </td>
+            <td><img src="{{ taskCompleted.image }}" alt="avatar" class="w-3rem h-3rem border-circle"></td>
+            <td><i class="pi pi-ellipsis-v"></i></td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+      <!-- Close table -->
+      <p-table [value]="taskClosed" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="w-1">{{ taskClosed[0].status }}</th>
+            <th class="w-4">Task name</th>
+            <th class="w-1 text-center">Start date</th>
+            <th class="w-1 text-center">End date</th>
+            <th class="w-1">Main day</th>
+            <th class="w-1">Created by</th>
+            <th class="w-2 text-right">Tag</th>
+            <th class="w-1">Assignee</th>
+            <th class="w-1">Edit</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-taskClosed>
+          <tr>
+            <td>
+              <p class="w-fit h-fit surface-200 border-round-lg border-primary-500 p-2">#{{ taskClosed.task_id }}</p>
+            </td>
+            <td class="w-25rem">
+              <span class="w-fit h-fit bg-red-500 border-round-lg border-red-500 p-2 text-white mr-2">Closed</span>
+              <del>{{ taskClosed.task_name }}</del>
+            </td>
+            <td>
+              <div class="flex gap-2 align-items-center">
+                <i class="pi pi-flag-fill" style="color: red;"></i>
+                {{ taskClosed.start_date }}
+              </div>
+            </td>
+            <td>
+              <div class="flex gap-2 align-items-center">
+                <i class="pi pi-arrow-right" style="color: green; font-size: 0.8rem;"></i>
+                {{ taskClosed.end_date }}
+              </div>
+            </td>
+            <td>
+              <p class="w-fit h-fit bg-green-500 border-round-lg border-green-500 p-2 text-white">
+                {{ taskClosed.main_day }} 
+                <span *ngIf="taskClosed.main_day != 1; else oneDay">days</span>
+                <ng-template #oneDay>day</ng-template>
+              </p>
+            </td>
+            <td>{{ taskClosed.created_by_name }}</td>
+            <td>
+              <div class="flex flex-row w-full justify-content-end gap-2" *ngFor="let item of taskClosed.tag.slice(0, -1).split(', ')">
+                <p class="w-fit bg-yellow-300 border-round-sm border-primary-500 p-2"  *ngFor="let x of item.split(',')">{{ x }}</p>
+              </div>
+            </td>
+            <td><img src="{{ taskClosed.image }}" alt="avatar" class="w-3rem h-3rem border-circle"></td>
+            <td><i class="pi pi-ellipsis-v"></i></td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
   </div>
 </div>

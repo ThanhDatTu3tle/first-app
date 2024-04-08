@@ -37,6 +37,8 @@ export class TasklistComponent implements OnInit {
   tasklists: any = [];
   taskInToDo: any = [];
   taskInProcess: any = [];
+  taskCompleted: any = [];
+  taskClosed: any = [];
   slBug: any = [];
   slTaskLate: any = [];
   employeeInProcess: any = [];
@@ -89,6 +91,8 @@ export class TasklistComponent implements OnInit {
       this.tasklists = tasklist;
       this.taskInToDo = tasklist.filter((item: { status: string; }) => item.status === "ToDo");
       this.taskInProcess = tasklist.filter((item: { status: string; }) => item.status === "Develop");
+      this.taskCompleted = tasklist.filter((item: { status: string; }) => item.status === "Completed");
+      this.taskClosed = tasklist.filter((item: { status: string; }) => item.status === "Close");
       this.employeeInProcess = this.taskInProcess;
     })
   }

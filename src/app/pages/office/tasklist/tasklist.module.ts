@@ -7,6 +7,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { BadgeModule } from 'primeng/badge';
 
 import { TasklistComponent } from './tasklist.component';
 import { TasklistRoutingModule } from './tasklist-routing.module';
@@ -23,6 +24,7 @@ import { TasklistRoutingModule } from './tasklist-routing.module';
         InputTextModule,
         ButtonModule,
         TableModule,
+        BadgeModule,
 
         // Routing
         TasklistRoutingModule

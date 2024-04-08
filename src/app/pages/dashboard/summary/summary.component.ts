@@ -1,3 +1,4 @@
+import * as Highcharts from 'highcharts';
 import { Component, OnInit } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
@@ -11,6 +12,14 @@ export class SummaryComponent implements OnInit {
   items: MenuItem[] = [];
   home!: MenuItem;
   sidebarVisible: boolean = false;
+
+  Highcharts: typeof Highcharts = Highcharts;
+  chartOptions: Highcharts.Options = {
+    series: [{
+      data: [1, 2, 3],
+      type: 'line'
+    }]
+  };
 
   ngOnInit() {
     this.items = [{ label: 'Dashboard' }, { label: 'Summary' }];

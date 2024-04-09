@@ -6,14 +6,14 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { ToastModule } from 'primeng/toast';
 
 // Highcharts
 import { HighchartsChartModule } from 'highcharts-angular';
 
 import { SummaryComponent } from './summary.component';
 import { SummaryRoutingModule } from './summary-routing.module';
-import { ToastModule } from 'primeng/toast';
-
+    
 @NgModule({
     imports: [
         CommonModule,

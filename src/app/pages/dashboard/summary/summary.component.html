@@ -1,4 +1,4 @@
-<div class="wrapper w-full h-full bg-transparent border-round-sm surface-overlay p-5">
+<div class="wrapper w-full h-fit bg-transparent border-round-sm surface-overlay p-5">
   <div class="title-btn-filter flex w-full align-items-center justify-content-between">
     <h1 class="text-3xl font-bold">DASHBOARD SUMMARY</h1>
     <p-sidebar [(visible)]="sidebarVisible" position="right">
@@ -76,17 +76,42 @@
     </div>
   </div>
 
-  <div class="flex flex-row mt-3 gap-2">
+  <div class="flex flex-row mt-3 mb-3 gap-2">
     <div class="w-5 white border-round-sm border-solid border-primary surface-overlay p-5 cursor-pointer">
       <span class="block text-3xl font-semibold mb-3">Tổng hợp tình trạng báo cáo</span>
-      <div class="flex flex-column align-items-center w-full">
-        <span class="block text-2xl font-normal mb-2">Tổng số cửa hàng: 158</span>
-        <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"></highcharts-chart>
+      <div class="flex flex-column w-full align-items-center">
+        <span class="block text-2xl font-normal mb-2">Tổng số cửa hàng đã khảo sát: 158</span>
+        <highcharts-chart [Highcharts]="HighchartsPieStatus" [options]="chartPieStatusOptions"></highcharts-chart>
       </div>
     </div>
     <div class="w-7 bg-white border-round-sm border-solid border-primary surface-overlay p-5 cursor-pointer">
-      <div>
-        <span class="block text-3xl font-semibold mb-2">Tổng hợp các lý do báo cáo</span>
+      <span class="block text-3xl font-semibold mb-3">Tổng hợp các lý do báo cáo</span>
+      <div class="flex flex-column w-full align-items-center">
+        <span class="block text-2xl font-normal mb-2">Tổng số cửa hàng KTC: 33</span>
+        <highcharts-chart [Highcharts]="HighchartsPieReason" [options]="charPieReasonOptions"></highcharts-chart>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full mb-3">
+    <div class="w-full white border-round-sm border-solid border-primary surface-overlay p-5 cursor-pointer">
+      <div class="flex flex-row"></div>
+      <span class="block text-3xl font-semibold mb-3">Tổng hợp tình trạng báo cáo tháng 03</span>
+      <!--  -->
+      <div class="flex flex-column w-full align-items-center">
+        <span class="block text-2xl font-normal mb-2"></span>
+        <highcharts-chart class="w-10" [Highcharts]="HighchartsColumn" [options]="chartColumn"></highcharts-chart>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full mb-3">
+    <div class="w-full white border-round-sm border-solid border-primary surface-overlay p-5 cursor-pointer">
+      <span class="block text-3xl font-semibold mb-3">Tổng hợp tình trạng báo cáo theo nhân viên (Ngày: 26-03-2024)</span>
+      <!--  -->
+      <div class="flex flex-column w-full align-items-center">
+        <span class="block text-2xl font-normal mb-2"></span>
+        <highcharts-chart class="w-10" [Highcharts]="HighchartsBar" [options]="chartBar"></highcharts-chart>
       </div>
     </div>
   </div>

@@ -14,6 +14,11 @@ export class SummaryComponent implements OnInit {
   sidebarVisible: boolean = false;
   shopTC: number = 125;
   shopKTC: number = 33;
+  showed!: any[];
+  selectedShowed: string | undefined;
+  date: Date | undefined;
+  day: Date = new Date();
+  today: string | undefined;
 
   constructor() { };
 
@@ -21,6 +26,21 @@ export class SummaryComponent implements OnInit {
     this.items = [{ label: 'Dashboard' }, { label: 'Summary' }];
 
     this.home = { icon: 'pi pi-home', routerLink: '/' };
+
+    this.today = this.day.getDate() + '-' + (this.day.getMonth()+1) + '-' + this.day.getFullYear();
+
+    this.showed = [
+      { name: '1' },
+      { name: '2' },
+      { name: '3' },
+      { name: '4' },
+      { name: '5' },
+      { name: '6' },
+      { name: '7' },
+      { name: '8' },
+      { name: '9' },
+      { name: '10' }
+    ];
   };
 
   HighchartsPieStatus: typeof Highcharts = Highcharts;

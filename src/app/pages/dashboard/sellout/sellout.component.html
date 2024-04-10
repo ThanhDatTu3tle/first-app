@@ -8,4 +8,11 @@
     </div>
     <br />
     <p-breadcrumb class="max-w-full bg-white" [model]="items" [home]="home"></p-breadcrumb>
+
+    <div class="flex mt-3 gap-2 bg-primary-50 p-3">
+        <div class="filter-top flex flex-column align-items-start justify-content-between">
+            <span class="block text-base font-bold mb-2">Start Date - End Date</span>
+            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" placeholder="{{ dateRangeAWeek }}"></p-calendar>
+        </div>
+    </div>
 </div>
